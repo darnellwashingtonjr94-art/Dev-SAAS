@@ -1,10 +1,10 @@
-'use server';
+'use server'
 
 import { auth } from '@/auth';
 import { db } from '@/lib/db';
 import { revalidatePath } from 'next/cache';
 
-export async function updateProfile(formData: FormData) {
+export async function updateProfile(formData: FormData): Promise<void> {
   const session = await auth();
   if (!session?.user?.id) throw new Error('Unauthorized');
 
@@ -20,5 +20,4 @@ export async function updateProfile(formData: FormData) {
   });
 
   revalidatePath('/dashboard/settings');
-  return { success: true };
 }
