@@ -1,9 +1,14 @@
-import NextAuth from 'next-auth';
-import { authConfig } from './auth.config';
+import type { NextAuthConfig } from 'next-auth';
 
-export default NextAuth(authConfig).auth;
-
-export const config = {
-  // Matcher ignores _next/static, images, and API routes
-  matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
-};
+export const authConfig = {
+  providers: [],
+  pages: {
+    signIn: '/login',
+  },
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+      return isLoggedIn;
+    },
+  },
+} satisfies NextAuthConfig;
