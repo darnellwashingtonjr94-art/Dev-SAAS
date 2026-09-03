@@ -1,10 +1,17 @@
-model User {
-  id               String    @id @default(cuid())
-  email            String    @unique
-  name             String?
-  emailVerified    DateTime?
-  stripeCustomerId String?
-  role             String    @default("user") // Add this field
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+import { PrismaClient } from '@prisma/client'
+
+const prisma = new PrismaClient()
+
+async function main() {
+  // Add your database seed logic here
+  console.log('Seeding database...')
 }
+
+main()
+  .catch((e) => {
+    console.error(e)
+    process.exit(1)
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })
