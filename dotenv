@@ -1,1 +1,2 @@
-npm install --save-dev dotenv @types/jest
+npm install dotenv
+npm install --save-dev @types/jest @types/node
