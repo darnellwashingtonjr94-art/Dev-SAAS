@@ -1,9 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
 import path from 'path';
-
-// Load test environment variables from .env.local
-dotenv.config({ path: path.resolve(__dirname, '.env.local') });
 
 export default defineConfig({
   testDir: './e2e',
@@ -23,7 +19,6 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
   ],
-  // Automatically spin up the Next.js production server during tests
   webServer: {
     command: 'npm run build && npm start',
     url: 'http://localhost:3000',
